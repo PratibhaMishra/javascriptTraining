@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script type="text/javascript">
+
+		function traversePrint(){
+			var liList = document.getElementsByTagName('li');
+
+			for (i = 0; i < liList.length; i++) {
+				liList[i].setAttribute("onclick", "createAlert(this.innerHTML)");
+			}
+		}
+
+		function createAlert(value) {
+			alert(value);
+		}
+		window.onload = traversePrint;
+
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>Text line One</li>
+			<li>Text line Two</li>
+			<li>Text line Three</li>
+			<li>Text line Four</li>
+			<li>Text line Five</li>
+		</ul>
+	</body>
+</html>
