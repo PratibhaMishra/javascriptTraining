@@ -53,5 +53,5 @@ events.trigger("myEvent", {name : 'Pranay'});
 events.off("myEvent", handleEvent);
 
 events.on("myEventRicha", handleEvent);
-events.trigger("myEventRicha", {name : 'Richa'});    
+events.trigger("myEventRicha", {name : 'Pratibha'});    
 events.off("myEventRicha", handleEvent);
