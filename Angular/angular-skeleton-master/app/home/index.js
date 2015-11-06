@@ -1,1 +1,1 @@
-angular.module('home',['home.controller','home.route', 'home.service']);
+angular.module('home',['home.route', 'home.controller', 'home.service']);

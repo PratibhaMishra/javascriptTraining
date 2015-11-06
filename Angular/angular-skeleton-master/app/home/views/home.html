@@ -1,1 +1,30 @@
-<h5>Hello {{username}}</h5>
+<div ng-init="getEmployeeName();">
+	<h5>Hello {{name}}</h5>
+	<div role="main" class="container theme-showcase" ng-init="getAllEmployee();">
+		<div class="" style="margin-top:90px;">
+			<div class="bs-component">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Age</th>
+							<th>Gender</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="employee in employees">
+							<td ng-click="showEmployeeData(employee.email);">{{employee.name}}</td>
+							<td ng-click="showEmployeeData(employee.email);">{{employee.email}}</td>
+							<td ng-click="showEmployeeData(employee.email);">{{employee.age}}</td>
+							<td ng-click="showEmployeeData(employee.email);">{{employee.gender}}</td>
+							<td ng-click="deleteEmployeeData($index);">Delete</td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="button"> Add New</button>
+			</div>
+		</div>
+	</div>
+</div>
