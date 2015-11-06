@@ -51,8 +51,8 @@ function homeService() {
 		}
 	}
 
-	function deleteData(index){
-		employees.splice(index,1)
+	function deleteData(username){
+		delete employees[username];
 		return employees;
 	}
 

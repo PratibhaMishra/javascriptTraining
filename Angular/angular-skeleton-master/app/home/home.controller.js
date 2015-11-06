@@ -15,7 +15,7 @@ function homeController($scope, $routeParams, $location, homeService) {
 	$scope.showEmployeeData = function(email){
 		if(email){
 			$scope.employee = homeService.getData(email);
-			$location.path('/home/'+$scope.employee.email+'/'+$scope.employee.age+'/'+$scope.employee.gender+'/'+$scope.employee.name);	
+			$location.path('/home/'+$scope.employee.email+'/'+$scope.employee.age+'/'+$scope.employee.gender+'/'+$scope.employee.name);
 		}
 	};
 
@@ -24,18 +24,17 @@ function homeController($scope, $routeParams, $location, homeService) {
 	}
 
 	$scope.updateEmployeeData = function(){
-		console.log($scope.employee);
-		console.log($routeParams.username);
 		if(homeService.updateData($scope.employee.email)){
 			$location.path('/home/'+$scope.employee.email)
 		}
 	}
 
-	$scope.deleteEmployeeData = function(index){
-		if(index){
-			console.log(index)
-			$scope.employee = homeService.deleteData(index);
-			$location.path('/home/'+$routeParams.username)
-		}
+	$scope.deleteEmployeeData = function(){
+		$scope.employee = homeService.deleteData(email);
+		$location.path('/home/'+$routeParams.email)
+	}
+
+	$scope.addEmployeeData = function(){
+		$location.path('/home/addEmployee/')
 	}
 };

@@ -2,6 +2,7 @@
 	<h5>Hello {{name}}</h5>
 	<div role="main" class="container theme-showcase" ng-init="getAllEmployee();">
 		<div class="" style="margin-top:90px;">
+			<button type="button" ng-click="addEmployeeData();"> Add New</button>
 			<div class="bs-component">
 				<table class="table table-striped table-hover">
 					<thead>
@@ -19,11 +20,10 @@
 							<td ng-click="showEmployeeData(employee.email);">{{employee.email}}</td>
 							<td ng-click="showEmployeeData(employee.email);">{{employee.age}}</td>
 							<td ng-click="showEmployeeData(employee.email);">{{employee.gender}}</td>
-							<td ng-click="deleteEmployeeData($index);">Delete</td>
+							<td ng-click="deleteEmployeeData(employee.email);">Delete</td>
 						</tr>
 					</tbody>
 				</table>
-				<button type="button"> Add New</button>
 			</div>
 		</div>
 	</div>

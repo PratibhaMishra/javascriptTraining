@@ -1,0 +1,31 @@
+<div class="col-md-6 col-md-offset-3">
+	<h3> Add new employee</h3>
+	<div ng-show="error" class="alert alert-danger">{{error}}</div>
+	<form name="addForm" ng-submit="addEmployeeData()" role="form">
+		<div class="form-group">
+			<label>Name</label>
+			<input type="text" name="name" id="name" ng-model="employee.name" required/>
+			<span ng-show="editForm.name.$dirty && editForm.name.$error.required" class="help-block">Name is required</span>
+		</div>
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" name="email" id="email" ng-model="employee.email" required/>
+			<span ng-show="editForm.email.$dirty && editForm.email.$error.required" class="help-block">Username is required</span>
+		</div>
+		<div class="form-group">
+			<label>Age</label>
+			<input type="text" name="age" id="age" ng-model="employee.age" required/>
+			<span ng-show="editForm.age.$dirty && editForm.age.$error.required" class="help-block">Age is required</span>
+		</div>
+		<div class="form-group">
+			<label>Gender</label>
+			<input type="text" name="gender" id="gender" ng-model="employee.gender" required/>
+			<span ng-show="editForm.gender.$dirty && editForm.gender.$error.required" class="help-block">Gender is required</span>
+		</div>
+		<div class="form-actions">
+			<button type="submit" ng-disabled="editFomr.$invalid" class="btn btn-primary">
+				Update Data
+			</button>
+		</div>
+	</form>
+</div>

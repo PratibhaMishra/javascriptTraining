@@ -7,6 +7,9 @@ angular.module('home.route', ['ngRoute']).config(['$routeProvider',
 		}).when('/home/:username/:age/:gender/:name', {
 			templateUrl: 'app/home/views/employeeData.html',
 			controller: 'homeCtrl'
+		}).when('/home/addEmployee', {
+			templateUrl : 'app/home/views/addEmployee.html',
+			controller : 'homeCtrl'
 		}).otherwise('/homeError', {
 			redirectTo: 'app/home/views/homeError.html'
 		});
