@@ -1,16 +1,12 @@
 angular.module('user.service',[])
-       .service('userService',[userService]);
-
-
+.service('userService',[userService]);
 
 function userService() {
+	var service = {};
+	service.get = get;
+	return service;
 
-  var service = {};
-  service.get = get;
-  return service;
-
-
-  function get() {
-    return ['Pranay','Shamsher','Amrutha'];
-  }
+	function get() {
+		return ['Pranay','Shamsher','Amrutha'];
+	}
 };

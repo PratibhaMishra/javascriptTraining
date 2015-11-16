@@ -1,65 +1,117 @@
-angular.module('home.service',[]).service('homeService',[homeService]);
+angular.module('home.service',[])
+.service('homeService',['$q','$timeout','$rootScope','$location', homeService]);
 
-function homeService() {
+function homeService($q,$rootScope,$timeout,$location) {
 	var service = {};
-	var employees = {
-			'abc@gmail.com' : {
-								'name'		: 'Atul Mishra',
-								'email'		: 'abc@gmail.com',
-								'age'		: 28,
-								'gender'	: 'Male'
-								},
-			'pqr@gmail.com' : {
-								'name'		: 'Pratima Chaturvedi',
-								'email'		: 'pqr@gmail.com',
-								'age'		: 26,
-								'gender'	: 'Female'
-								},
-			'lmn@gmail.com' : {
-								'name'		: 'Sidhika Khandelwal',
-								'email'		: 'lmn@gmail.com',
-								'age'		: 15,
-								'gender'	: 'Female'
-								}
+	var employees = [
+		{
+			'name': 'Aditya Bugadi',
+			'username': 'abc@gmail.com',
+			'address': 'Bund Garden',
+			'email': 'abc@gmail.com',
+			'age': 23,
+			'gender': 'Male',
+			'education': 'MCA'
+		},
+		{
+			'name': 'Zahabia Maru',
+			'username': 'xyz@gmail.com',
+			'address': 'Bund Garden',
+			'email': 'xyz@gmail.com',
+			'age': 21,
+			'gender': 'Female',
+			'education': 'MCA'
+		},
+		{
+			'name': 'Punit Shah',
+			'username': 'pqr@gmail.com',
+			'address': 'Bund Garden',
+			'email': 'pqr@gmail.com',
+			'age': 22,
+			'gender': 'Male',
+			'education': 'MCA'
+		},
+		{
+			'name': 'Abhishek Kala',
+			'username': 'abhishek@gmail.com',
+			'address': 'Bund Garden',
+			'email': 'abhishek@gmail.com',
+			'age': 20,
+			'gender': 'Male',
+			'education': 'MCA'
 		}
-
-	function getName( username ) {
-		var name = "";
-
-		if(employees[username]!=undefined){
-			name = employees[username]['name'];
-		} else {
-			name = "New Users";
-		}
-		return name;
+	];
+	function employeeName(username) {
+		return $q(function(resolve, reject) {
+			for(var i=0;i<employees.length;i++) {
+				//console.log(employees[i]['username']);
+				console.log(username);
+				if(employees[i]["username"]==username){
+					resolve(employees[i]["name"]);
+					//break;
+				} else {
+					reject('Not registered');
+				}
+			}
+		});
+	}
+	function employeeInfo(username) {
+		return $q(function(resolve, reject) {
+			for(var i=0;i<employees.length;i++) {
+				if(employees[i]["username"]==username){
+					resolve(employees[i]);
+					break;
+				} 
+			}
+		});
 	}
 
-	function getAll(){
-		return employees;
+	function employeesList() {
+		return $q(function(resolve, reject) {
+			if(typeof employees == 'object'){
+				resolve(employees);
+			} else {
+				reject('No Employees');
+			}
+		});
 	}
 
-	function getData(username){
-		if(employees[username]!= undefined){
-			data = employees[username];
-		}
-		return data;
+	function updateEmployeeInfo(objParams) {
+		employees.push(objParams);
+		return $q(function(resolve, reject) {
+			if(typeof employees == 'object'){
+				resolve(employees);
+			} else {
+				reject('Cannot update');
+			}
+		});
+	}
+	function deleteEmployee(username) {
+		for(var i=0;i<employees.length;i++) {
+			if(employees[i]["username"]==username){
+				delete $rootScope.employees[i];
+				$location.path('/home');
+				break;
+			}
+		}  
+		return $rootScope.employees;
 	}
 
-	function updateData(username){
-		if(employees[username] != undefined && angular.isObject(employees[username])){
-			return employees[username]
-		}
+	function addEmployee(objParams) {
+		employees.push(objParams);
+		return $q(function(resolve, reject) {
+			if(typeof employees == 'object'){
+				resolve(employees);
+			} else {
+				reject('Cannot add');
+			}
+		});
 	}
-
-	function deleteData(username){
-		delete employees[username];
-		return employees;
-	}
-
-	service.getName		= getName;
-	service.getAll		= getAll;
-	service.getData		= getData;
-	service.updateData	= updateData;
-	service.deleteData	= deleteData;
+	service.employeeName = employeeName;
+	service.employeeInfo = employeeInfo;
+	service.employeesList = employeesList;
+	service.updateEmployeeInfo = updateEmployeeInfo;
+	service.deleteEmployee = deleteEmployee;
+	service.addEmployee = addEmployee;
 	return service;
 };

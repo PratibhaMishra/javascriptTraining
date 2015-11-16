@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if lt IE 7]><html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]><html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]><html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
 		<link rel="stylesheet" href="app/app.css">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 		<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 	</head>
 	<body>
@@ -28,13 +29,19 @@
 
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/angular-route/angular-route.js"></script>
-		
-		<!-- Common files to be loaded first -->
+		<script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+
+		<!--Common -->
 		<script src="app/common/directives/index.js"></script>
+		<script src="app/common/directives/employeeDelete.js"></script>
+		<script src="app/common/directives/employeeSave.js"></script>
+		<script src="app/common/directives/employeeSelect.js"></script>
+		<script src="app/common/services/index.js"></script>
+		<script src="app/common/services/localStorage.js"></script>
+		<script src="app/common/services/interceptor.js"></script>
 		<script src="app/common/services/user.js"></script>
 		<script src="app/common/services/login.js"></script>
 		<script src="app/common/services/home.js"></script>
-		<script src="app/common/services/index.js"></script>
 
 		<!-- User module -->
 		<script src="app/user/user.controller.js"></script>
@@ -47,12 +54,12 @@
 		<script src="app/login/index.js"></script>
 
 		<!-- Home module -->
+		<script src="app/home/addemployee.controller.js"></script>
 		<script src="app/home/home.controller.js"></script>
 		<script src="app/home/home.route.js"></script>
 		<script src="app/home/index.js"></script>
-		  
+
 		<!-- Main module -->
 		<script src="app/app.js"></script>
-
 	</body>
 </html>
