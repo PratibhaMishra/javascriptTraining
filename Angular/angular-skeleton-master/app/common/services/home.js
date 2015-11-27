@@ -1,117 +1,65 @@
-angular.module('home.service',[])
-.service('homeService',['$q','$timeout','$rootScope','$location', homeService]);
+angular.module('home.service', [])
+.service('homeService',[homeService]);
 
-function homeService($q,$rootScope,$timeout,$location) {
-	var service = {};
+function homeService(){
+	var service ={};
 	var employees = [
 		{
-			'name': 'Aditya Bugadi',
-			'username': 'abc@gmail.com',
-			'address': 'Bund Garden',
-			'email': 'abc@gmail.com',
-			'age': 23,
-			'gender': 'Male',
-			'education': 'MCA'
+			'name'  		: 'Pratibha Mishra',
+			'city'			: 'Nashik',
+			'email'			: 'pratibha@gmail.com',
+			'age'			: 26,
+			'gender'		: 'Female',
+			'qualification'	: 'M.C.A'
 		},
 		{
-			'name': 'Zahabia Maru',
-			'username': 'xyz@gmail.com',
-			'address': 'Bund Garden',
-			'email': 'xyz@gmail.com',
-			'age': 21,
-			'gender': 'Female',
-			'education': 'MCA'
+			'name'  		: 'Richa Dagar',
+			'city'			: 'Jaipur',
+			'email'			: 'richa@gmail.com',
+			'age'			: 25,
+			'gender'		: 'Female',
+			'qualification'	: 'B.Tech'
 		},
 		{
-			'name': 'Punit Shah',
-			'username': 'pqr@gmail.com',
-			'address': 'Bund Garden',
-			'email': 'pqr@gmail.com',
-			'age': 22,
-			'gender': 'Male',
-			'education': 'MCA'
-		},
-		{
-			'name': 'Abhishek Kala',
-			'username': 'abhishek@gmail.com',
-			'address': 'Bund Garden',
-			'email': 'abhishek@gmail.com',
-			'age': 20,
-			'gender': 'Male',
-			'education': 'MCA'
+			'name'  		: 'Ashwini Gawade',
+			'city'			: 'Mumbai',
+			'email'			: 'ashwini@gmail.com',
+			'age'			: 25,
+			'gender'		: 'Female',
+			'qualification'	: 'B.Tech'
 		}
-	];
-	function employeeName(username) {
-		return $q(function(resolve, reject) {
-			for(var i=0;i<employees.length;i++) {
-				//console.log(employees[i]['username']);
-				console.log(username);
-				if(employees[i]["username"]==username){
-					resolve(employees[i]["name"]);
-					//break;
-				} else {
-					reject('Not registered');
-				}
-			}
-		});
-	}
-	function employeeInfo(username) {
-		return $q(function(resolve, reject) {
-			for(var i=0;i<employees.length;i++) {
-				if(employees[i]["username"]==username){
-					resolve(employees[i]);
-					break;
-				} 
-			}
-		});
+	]
+	function getName(username){
+		var name = "";
+		if(employees[username]!= undefined){
+			name = employees[username]['name'];
+		} else {
+			name = "New User"
+		}
+		return name;
 	}
 
-	function employeesList() {
-		return $q(function(resolve, reject) {
-			if(typeof employees == 'object'){
-				resolve(employees);
-			} else {
-				reject('No Employees');
-			}
-		});
+	function getAll(){
+		return employees;
 	}
 
-	function updateEmployeeInfo(objParams) {
-		employees.push(objParams);
-		return $q(function(resolve, reject) {
-			if(typeof employees == 'object'){
-				resolve(employees);
-			} else {
-				reject('Cannot update');
-			}
-		});
-	}
-	function deleteEmployee(username) {
-		for(var i=0;i<employees.length;i++) {
-			if(employees[i]["username"]==username){
-				delete $rootScope.employees[i];
-				$location.path('/home');
-				break;
-			}
-		}  
-		return $rootScope.employees;
+	function getData(username){
+		var data = "";
+		if(employees[username]!=undefined){
+			data = employees[username];
+		}
+		return data;
 	}
 
-	function addEmployee(objParams) {
-		employees.push(objParams);
-		return $q(function(resolve, reject) {
-			if(typeof employees == 'object'){
-				resolve(employees);
-			} else {
-				reject('Cannot add');
-			}
-		});
+	function updateData(username){
+		if(employees[username] != undefined && angular.isObject(employees[username])){
+			return employees[username];
+		}
 	}
-	service.employeeName = employeeName;
-	service.employeeInfo = employeeInfo;
-	service.employeesList = employeesList;
-	service.updateEmployeeInfo = updateEmployeeInfo;
-	service.deleteEmployee = deleteEmployee;
-	service.addEmployee = addEmployee;
+
+	service.getName		= getName;
+	service.getAll		= getAll;
+	service.getData		= getData;
+	service.updateData	= updateData;
 	return service;
-};
+}

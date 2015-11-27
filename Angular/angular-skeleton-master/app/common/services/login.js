@@ -1,33 +1,22 @@
-angular.module('login.service',[])
-.service('loginService',['$q','apiLocalStorageService',loginService]);
+angular.module('login.service', [])
+.service('loginService',[loginService]);
 
-function loginService($q,apiLocalStorageService) {
+function loginService(){
 	var service = {};
-	var credentials = { 'abc@gmail.com' : '123456' ,'xyz@gmail.com' : '123456','pqr@gmail.com' :'123456', 'abhishek@gmail.com' : '123456'} ;
-
-	function login(username,password) {
-		return $q(function(resolve, reject) {
-			var loginValid= false;
-			if(credentials[username]!=undefined  && credentials[username] == password){
-					resolve(credentials[username]);
-			} else {
-				reject(false);
-			}			
-		});
-	}
-
-	function authenticate() {
-		return $q(function(resolve, reject) {
-		var localTokenId = apiLocalStorageService.get('tokenid');
-			if (localTokenId!=undefined) {
-				resolve(true);
-			}else{
-				reject(false);
-			}
-		});
-	}
-
+	service.getHome = getHome;
 	service.login = login;
-	service.authenticate = authenticate;
 	return service;
-};
+
+	function getHome(){
+		return 'Welcome to Login';
+	}
+
+	function login(username, password){
+		var login = false;
+		var combinations = {'pratibha@gmail.com':'123456', 'richa@gmail.com':'123456', 'ashwini@gmail.com':'123456'};
+		if( combinations[username] && combinations[username] == password) {
+			login = true;
+		}
+		return login;
+	}
+}
